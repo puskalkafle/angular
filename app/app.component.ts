@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
     <div>{{inputVal}}</div>
     <button  (click)="handleClick($event)">Reset</button>
     <!-- two way data binding -->
-    <input type="text" [(ngModel)]="twdb">
+    <input type="text" [ngModel]="twdb" (ngModelChange)="handleChange($event)">
     <input type="text" [(ngModel)]="twdb">
     <div> {{twdb}} </div>
   `
@@ -43,6 +43,9 @@ export class AppComponent {
   }
   handleClick(event:any){
     this.inputVal = 'puskal';
+  }
+  handleChange(value:any){
+    this.twdb = value;
   }
 
 }
