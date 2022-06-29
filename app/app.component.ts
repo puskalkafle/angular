@@ -14,17 +14,35 @@ import { Component } from '@angular/core';
     </div>
     <img [src]="logo">
     <!-- oneway data flow -> change in input field dont change initial value -->
-    <input [value]="inputVal">
+    <!-- (input) listen to changes of input  -->
+    <input [value]="inputVal" (blur)="handleBlur($event)" (input)="handleInput($event)" >
     <div>{{inputVal}}</div>
+    <button  (click)="handleClick($event)">Reset</button>
+    <!-- two way data binding -->
+    <input type="text" [(ngModel)]="twdb">
+    <input type="text" [(ngModel)]="twdb">
+    <div> {{twdb}} </div>
   `
 })
 export class AppComponent {
 
   title: string;
+  twdb: string = 'two way data binding example';
   inputVal: string =  'puskal';
   logo: string = 'img/logo.svg'
   constructor(){
     this.title = "Puskal is learning Anuglar."
+  }
+
+  handleBlur(event:any){
+    this.inputVal = event.target.value;
+  }
+
+  handleInput(event:any){
+    this.inputVal = event.target.value;
+  }
+  handleClick(event:any){
+    this.inputVal = 'puskal';
   }
 
 }
