@@ -2,50 +2,52 @@ import { Component } from '@angular/core';
 //1.{Componenet}: Decorator
 //Decorator is a function, using which we attach metadata to a class, method, accessor, property, or parameter.
 //It will select app-root element.
+interface Passengers {
+  id: number,
+  name: string,
+  checkedin: boolean
+}
 
 @Component({
   selector: 'app-root',
+  templateUrl: './app.component.html',
   styleUrls: ['app.component.scss'],
-  template: `
-    <div class="app">
-    <!-- interpolation   -->
-    {{title}}
-
-    </div>
-    <img [src]="logo">
-    <!-- oneway data flow -> change in input field dont change initial value -->
-    <!-- (input) listen to changes of input  -->
-    <input [value]="inputVal" (blur)="handleBlur($event)" (input)="handleInput($event)" >
-    <div>{{inputVal}}</div>
-    <button  (click)="handleClick($event)">Reset</button>
-    <!-- two way data binding -->
-    <input type="text" [ngModel]="twdb" (ngModelChange)="handleChange($event)">
-    <input type="text" [(ngModel)]="twdb">
-    <div> {{twdb}} </div>
-  `
 })
+
 export class AppComponent {
 
   title: string;
   twdb: string = 'two way data binding example';
-  inputVal: string =  'puskal';
+  inputVal: string = 'puskal';
   logo: string = 'img/logo.svg'
-  constructor(){
+  constructor() {
     this.title = "Puskal is learning Anuglar."
   }
 
-  handleBlur(event:any){
-    this.inputVal = event.target.value;
-  }
+  passengers: Passengers[] = [
+    {
+      id: 1,
+      name: "Puskal1 Kafle",
+      checkedin: true
+    },
+    {
+      id: 2,
+      name: "Puskal2 Kafle",
+      checkedin: true
+    }
+  ]
 
-  handleInput(event:any){
+  // handleBlur(event:any){
+  //   this.inputVal = event.target.value;
+  // }
+
+  handleInput(event: any) {
     this.inputVal = event.target.value;
   }
-  handleClick(event:any){
+  handleClick(event: any) {
     this.inputVal = 'puskal';
   }
-  handleChange(value:any){
+  handleChange(value: any) {
     this.twdb = value;
   }
-
 }

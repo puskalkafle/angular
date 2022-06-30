@@ -1,0 +1,24 @@
+<div class="app">
+    
+    <!-- interpolation   -->
+    {{title}}
+
+
+
+    <!-- <img [src]="logo"> -->
+    <!-- oneway data flow -> change in input field dont change initial value -->
+    <!-- (input) listen to changes of input  -->
+    <input [value]="inputVal" (blur)="handleBlur($event)" (input)="handleInput($event)" >
+    <div>{{inputVal}}</div>
+    <button  (click)="handleClick($event)">Reset</button>
+    <!-- two way data binding -->
+    <input type="text" [ngModel]="twdb" (ngModelChange)="handleChange($event)">
+    <input type="text" [(ngModel)]="twdb">
+    <div> {{twdb}} </div>
+
+    <ul>
+      <li *ngFor="let passenger of passengers;">
+        {{passenger.name}}
+      </li>  
+      </ul>
+    </div>
